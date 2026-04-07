@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { createClient } from '@/lib/supabase/client';
 
 export interface Will {
   id: string;
@@ -27,7 +27,7 @@ interface UseWillReturn {
 }
 
 export function useWill(): UseWillReturn {
-  const supabase = createClientComponentClient();
+  const supabase = createClient();
   const [will, setWill] = useState<Will | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);

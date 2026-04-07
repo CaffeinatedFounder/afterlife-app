@@ -1,5 +1,4 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
+import { createServerSupabaseClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { Card } from '@/components/ui/card';
@@ -58,7 +57,7 @@ const WILL_SECTIONS = [
 ];
 
 export default async function WillPage() {
-  const supabase = createServerComponentClient({ cookies });
+  const supabase = await createServerSupabaseClient();
 
   const {
     data: { session },
