@@ -1,0 +1,461 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================================
+   ROOT AND BASE STYLES
+   ============================================================================ */
+
+:root {
+  --color-primary: #2d2d7f;
+  --color-primary-light: #3d3d8f;
+  --color-primary-dark: #1d1d5f;
+  --color-secondary: #6366f1;
+  --color-accent: #ec4899;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+
+  --safe-area-inset-top: env(safe-area-inset-top, 0);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom, 0);
+  --safe-area-inset-left: env(safe-area-inset-left, 0);
+  --safe-area-inset-right: env(safe-area-inset-right, 0);
+}
+
+* {
+  @apply box-border;
+}
+
+html {
+  @apply scroll-smooth;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  @apply bg-white dark:bg-[#1A1A2E];
+  @apply text-gray-900 dark:text-gray-100;
+  @apply transition-colors duration-300;
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================================================
+   SCROLLBAR STYLING
+   ============================================================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gradient-to-b from-purple-500 to-indigo-600;
+  @apply rounded-full border-2 border-transparent bg-clip-padding;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply from-purple-600 to-indigo-700;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: linear-gradient(180deg, #a855f7, #4f46e5) #f3f4f6;
+}
+
+@media (prefers-color-scheme: dark) {
+  * {
+    scrollbar-color: linear-gradient(180deg, #a855f7, #4f46e5) #1f2937;
+  }
+}
+
+/* ============================================================================
+   SMOOTH SCROLLING & ANIMATIONS
+   ============================================================================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    @apply !transition-none !animate-none;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================================
+   FOCUS STYLES
+   ============================================================================ */
+
+:focus-visible {
+  @apply outline-2 outline-offset-2 outline-purple-500 dark:outline-purple-400;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  @apply outline-2 outline-offset-2 outline-purple-500 dark:outline-purple-400;
+}
+
+/* ============================================================================
+   TYPOGRAPHY
+   ============================================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-semibold tracking-tight;
+}
+
+h1 {
+  @apply text-3xl md:text-4xl lg:text-5xl font-bold;
+}
+
+h2 {
+  @apply text-2xl md:text-3xl lg:text-4xl;
+}
+
+h3 {
+  @apply text-xl md:text-2xl lg:text-3xl;
+}
+
+h4 {
+  @apply text-lg md:text-xl;
+}
+
+h5 {
+  @apply text-base md:text-lg;
+}
+
+h6 {
+  @apply text-sm md:text-base;
+}
+
+p {
+  @apply leading-relaxed;
+}
+
+a {
+  @apply transition-colors duration-200;
+}
+
+small {
+  @apply text-sm;
+}
+
+/* ============================================================================
+   FORM ELEMENTS
+   ============================================================================ */
+
+input,
+textarea,
+select {
+  @apply font-inherit;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='number'],
+input[type='tel'],
+input[type='date'],
+input[type='time'],
+input[type='datetime-local'],
+input[type='month'],
+input[type='week'],
+input[type='url'],
+input[type='search'],
+textarea,
+select {
+  @apply rounded-lg border border-gray-300 dark:border-gray-600;
+  @apply bg-white dark:bg-gray-800;
+  @apply text-gray-900 dark:text-gray-100;
+  @apply px-4 py-2 md:px-4 md:py-3;
+  @apply transition-colors duration-200;
+  @apply focus:border-purple-500 dark:focus:border-purple-400;
+  @apply focus:ring-2 focus:ring-purple-500/20 dark:focus:ring-purple-400/20;
+}
+
+textarea {
+  @apply resize-vertical min-h-24;
+  font-family: inherit;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  @apply cursor-pointer;
+}
+
+label {
+  @apply font-medium text-gray-700 dark:text-gray-300;
+  @apply block mb-2;
+}
+
+/* ============================================================================
+   BUTTON STYLES
+   ============================================================================ */
+
+button {
+  @apply cursor-pointer font-medium transition-all duration-200;
+  @apply active:scale-95;
+}
+
+button:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* ============================================================================
+   CARDS AND CONTAINERS
+   ============================================================================ */
+
+.card {
+  @apply rounded-lg border border-gray-200 dark:border-gray-700;
+  @apply bg-white dark:bg-gray-800;
+  @apply shadow-sm hover:shadow-md transition-shadow duration-200;
+}
+
+.container-safe {
+  @apply px-4 sm:px-6 lg:px-8;
+  padding-top: var(--safe-area-inset-top);
+  padding-bottom: var(--safe-area-inset-bottom);
+  padding-left: calc(var(--safe-area-inset-left) + 1rem);
+  padding-right: calc(var(--safe-area-inset-right) + 1rem);
+}
+
+/* ============================================================================
+   GRADIENT UTILITIES
+   ============================================================================ */
+
+.gradient-primary {
+  @apply bg-gradient-to-br from-purple-500 via-purple-600 to-indigo-700;
+}
+
+.gradient-primary-light {
+  @apply bg-gradient-to-br from-purple-400 via-purple-500 to-indigo-600;
+}
+
+.gradient-accent {
+  @apply bg-gradient-to-br from-pink-500 via-red-500 to-yellow-500;
+}
+
+.gradient-success {
+  @apply bg-gradient-to-br from-green-400 to-emerald-600;
+}
+
+.gradient-text {
+  @apply bg-gradient-to-r from-purple-600 to-indigo-600;
+  @apply bg-clip-text text-transparent;
+}
+
+.gradient-text-accent {
+  @apply bg-gradient-to-r from-pink-600 to-red-600;
+  @apply bg-clip-text text-transparent;
+}
+
+/* ============================================================================
+   PWA SAFE AREA PADDING
+   ============================================================================ */
+
+.pb-safe {
+  padding-bottom: calc(env(safe-area-inset-bottom) + 1rem);
+}
+
+.pb-safe-lg {
+  padding-bottom: calc(env(safe-area-inset-bottom) + 2rem);
+}
+
+.pt-safe {
+  padding-top: calc(env(safe-area-inset-top) + 1rem);
+}
+
+.pl-safe {
+  padding-left: calc(env(safe-area-inset-left) + 1rem);
+}
+
+.pr-safe {
+  padding-right: calc(env(safe-area-inset-right) + 1rem);
+}
+
+/* Bottom navigation safe area for mobile */
+.bottom-nav-safe {
+  padding-bottom: calc(env(safe-area-inset-bottom) + 60px);
+}
+
+@media (min-width: 768px) {
+  .bottom-nav-safe {
+    padding-bottom: 0;
+  }
+}
+
+/* ============================================================================
+   DARK MODE SPECIFIC STYLES
+   ============================================================================ */
+
+@media (prefers-color-scheme: dark) {
+  input[type='text'],
+  input[type='email'],
+  input[type='password'],
+  input[type='number'],
+  input[type='tel'],
+  input[type='date'],
+  input[type='time'],
+  input[type='datetime-local'],
+  input[type='month'],
+  input[type='week'],
+  input[type='url'],
+  input[type='search'],
+  textarea,
+  select {
+    @apply bg-gray-800 border-gray-600 text-gray-100;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    @apply text-gray-500;
+  }
+}
+
+/* ============================================================================
+   UTILITY CLASSES
+   ============================================================================ */
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.text-pretty {
+  text-wrap: pretty;
+}
+
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ============================================================================
+   LOADING AND SKELETON STATES
+   ============================================================================ */
+
+.skeleton {
+  @apply animate-pulse rounded bg-gray-200 dark:bg-gray-700;
+}
+
+.skeleton-text {
+  @apply skeleton h-4 w-full mb-2;
+}
+
+.skeleton-avatar {
+  @apply skeleton h-10 w-10 rounded-full;
+}
+
+.skeleton-card {
+  @apply skeleton h-24 w-full rounded-lg;
+}
+
+/* ============================================================================
+   TRANSITIONS
+   ============================================================================ */
+
+.transition-smooth {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.transition-fast {
+  @apply transition-all duration-150 ease-in-out;
+}
+
+.transition-slow {
+  @apply transition-all duration-500 ease-in-out;
+}
+
+/* ============================================================================
+   BACKDROP AND OVERLAY
+   ============================================================================ */
+
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+}
+
+.backdrop-blur {
+  backdrop-filter: blur(12px);
+}
+
+.backdrop-blur-lg {
+  backdrop-filter: blur(20px);
+}
+
+/* ============================================================================
+   RESPONSIVE UTILITIES
+   ============================================================================ */
+
+@media (max-width: 640px) {
+  .mobile-only {
+    @apply block;
+  }
+
+  .desktop-only {
+    @apply hidden;
+  }
+}
+
+@media (min-width: 641px) {
+  .mobile-only {
+    @apply hidden;
+  }
+
+  .desktop-only {
+    @apply block;
+  }
+}
+
+/* ============================================================================
+   PRINT STYLES
+   ============================================================================ */
+
+@media print {
+  body {
+    @apply bg-white text-black;
+  }
+
+  button,
+  a {
+    @apply no-underline;
+  }
+
+  a[href]:after {
+    content: '';
+  }
+}
