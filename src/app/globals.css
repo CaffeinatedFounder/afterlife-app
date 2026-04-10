@@ -62,18 +62,18 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply from-purple-600 to-indigo-700;
+  @apply bg-gradient-to-b from-purple-600 to-indigo-700;
 }
 
 /* Firefox scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: linear-gradient(180deg, #a855f7, #4f46e5) #f3f4f6;
+  scrollbar-color: #a855f7 #f3f4f6;
 }
 
 @media (prefers-color-scheme: dark) {
   * {
-    scrollbar-color: linear-gradient(180deg, #a855f7, #4f46e5) #1f2937;
+    scrollbar-color: #a855f7 #1f2937;
   }
 }
 
@@ -167,7 +167,7 @@ small {
 input,
 textarea,
 select {
-  @apply font-inherit;
+  font-family: inherit;
 }
 
 input[type='text'],
@@ -194,7 +194,7 @@ select {
 }
 
 textarea {
-  @apply resize-vertical min-h-24;
+  @apply resize-y min-h-[6rem];
   font-family: inherit;
 }
 
